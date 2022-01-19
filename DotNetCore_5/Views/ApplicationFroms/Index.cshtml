@@ -1,0 +1,228 @@
+﻿@model IEnumerable<DotNetCore_5.Models.ApplicationFrom>
+@*@model PagedList.IPagedList<DotNetCore_5.Models.ApplicationFrom>*@
+@*@model PagedList.Core.IPagedList<DotNetCore_5.Models.ApplicationFrom>*@
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="font-family:Algerian;text-align:center;color:aqua">Applicant Information</h1>
+<p>
+    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" data-toggle="modal" data-target="#addEmployeeModal" name="addEmployeeModal"><i class="material-icons">&#xE147;</i><span>Add New</span></a>
+</p>
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr class="bg-info">
+            <th>
+                App.Id
+            </th>
+            <th>Name</th>            
+            <th>Gender</th>
+
+            <th>
+                Religion
+            </th>
+            <th>
+                NID
+            </th>
+
+            @*<th>
+            F.Name
+        </th>
+        <th>
+            M.Name
+        </th>*@
+            <th>
+                Cont.No
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                IsSelect
+            </th>
+            <th>
+                School
+            </th>
+            <th>
+                Branch
+            </th>
+            <th>
+                Class
+            </th>
+            <th>
+                Image
+            </th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var photoPath = "~/Images/" + (item.ImageUrl ?? "no.png");
+            <tr>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.ApplicantId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Religion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthRegistrationNo)
+                </td>
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.FatherName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MothrsName)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsSelect)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.School.SchoolName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Branch.BranchName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Class.ClassName)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+                    <img src="@photoPath" height="60" width="60" asp-append-version="true" />
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.SlNO">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.SlNO">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.SlNO">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+@*<h4 class="bg-warning">@Html.Action("GetStudentCount")</h4>*@
+@*Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount*@
+
+
+<div id="addEmployeeModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-controller="ApplicationFroms" asp-action="Create">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="color:wheat;text-align:center">Add Application Form</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="form-group">
+                    <label>Applicant ID</label>
+                    <input type="text" class="form-control" required="required" name="ApplicantId" />
+                </div>
+                <div class="form-group">
+                    <label>Applicant Name</label>
+                    <input type="text" class="form-control" required="required" name="ApplicantName" />
+                    @*<input asp-for="ApplicantName" class="form-control" />*@
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    @*<input asp-for="Gender" class="form-control" />*@
+                    <select class="form-control" required="required" name="Gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    @*<span asp-validation-for="Gender" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <label>Religion</label>
+                    @*<input asp-for="Religion" class="form-control" />*@
+                    <select class="form-control" required="required" name="Religion">
+                        <option>Islam</option>
+                        <option>Hindu</option>
+                        <option>Others</option>
+                    </select>
+                    @*<span asp-validation-for="Religion" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <label>Br.ID</label>
+                    <input type="text" class="form-control" required="required" name="BirthRegistrationNo" />
+                    @*<input asp-for="BirthRegistrationNo" class="form-control" />*@
+                    @*<span asp-validation-for="BirthRegistrationNo" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <label>Father Name</label>
+                    <input type="text" class="form-control" required="required" name="FatherName" />
+                    @*<span asp-validation-for="FatherName" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <label>Mothrs Name</label>
+                    <input class="form-control" required="required" name="MothrsName" />
+                    @*<span asp-validation-for="MothrsName" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <label>Cont No</label>
+                    <input class="form-control" required="required" name="ContNo" />
+
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input class="form-control" required="required" name="Address" />
+
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input class="form-control" required="required" />
+
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" required="required" name="IsSelect" /> @Html.DisplayNameFor(model => model.IsSelect)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Class</label>
+                    <select class="form-control" required="required" asp-items="ViewBag.ClassId"></select>
+                </div>
+                <div class="form-group">
+                    <label>Branch</label>
+                    <select class="form-control" required="required" asp-items="ViewBag.BranchId"></select>
+                </div>
+                <div class="form-group">
+                    <label>School</label>
+                    <select class="form-control" required="required" name="SchoolId" asp-items="ViewBag.SchoolId"></select>
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <img src="~/images/noImage.jpg" width="60" height="60" class="change_edit" />
+                    <input class="form-control changeImage" type="file" required />
+                    <label>Choose File...</label>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />
+                    <input type="Submit" class="btn btn-success" value="Add" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

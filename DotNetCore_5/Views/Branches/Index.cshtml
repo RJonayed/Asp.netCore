@@ -1,0 +1,98 @@
+﻿@model IEnumerable<DotNetCore_5.Models.Branch>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="font-family:Algerian;text-align:center;color:orangered">Branch Information</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" data-toggle="modal" data-target="#addEmployeeModal" name="addEmployeeModal"><i class="material-icons">&#xE147;</i><span>Add New</span></a>
+</p>
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr class="bg-primary">
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.BranchId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.School)
+            </th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.BranchId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.School.SchoolName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BranchId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BranchId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BranchId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div id="addEmployeeModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-controller="Branches" asp-action="Create">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="color:wheat;text-align:center">Add Branch</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Branch Name</label>
+                        <input type="text" class="form-control" required="required" name="BranchName" />
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        @*<select type="text" class="form-control" required="required" name="BranchLocation">
+                            <option>Jigatola,Dhaka</option>
+                            <option>Motijell,Dhaka</option>
+                            <option>Panthapath,Dhaka</option>
+                            <option>Mirpur,Dhaka</option>
+                        </select>*@
+                        <input type="text" class="form-control" required="required" name="BranchLocation" />
+                    </div>
+                    <div class="form-group">
+                        <label>School</label>
+                        <input type="text" class="form-control" required="required" name="SchoolName" />
+                    @*<select class="form-control" asp-items="ViewBag.SchoolId" name="SchoolName">
+                        <option>ASC</option>
+                        <option>BAFS</option>
+                        <option>DCS</option>
+                        <option>BICL</option>
+                    </select>*@
+                    </div>             
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />
+                    <input type="Submit" class="btn btn-success" value="Add" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

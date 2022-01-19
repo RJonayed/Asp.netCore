@@ -1,0 +1,50 @@
+﻿@model DotNetCore_5.Models.Subject
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4> Edit Subject</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SubjectId" />
+            <div class="form-group">
+                <label asp-for="SubjectName" class="control-label"></label>
+                @*<input asp-for="SubjectName" class="form-control" />*@
+                <select asp-for="SubjectName" class="form-control">
+                    <option>Bangla</option>
+                    <option>English</option>
+                    <option>Math</option>
+                    <option>Arabic</option>
+                </select>
+                <span asp-validation-for="SubjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubjectCode" class="control-label"></label>
+                <input asp-for="SubjectCode" class="form-control" />
+                <span asp-validation-for="SubjectCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExamMark" class="control-label"></label>
+                <input asp-for="ExamMark" class="form-control" />
+                <span asp-validation-for="ExamMark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GroupsId" class="control-label"></label>
+                <input asp-for="GroupsId" class="form-control" />
+                <span asp-validation-for="GroupsId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

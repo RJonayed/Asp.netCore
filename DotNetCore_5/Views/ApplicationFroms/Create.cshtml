@@ -1,0 +1,123 @@
+﻿@model DotNetCore_5.Models.ApplicationFrom
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Application Form</h4>
+<hr />
+    <div class="row">
+        <div class="form-group col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ApplicantId" class="control-label"></label>
+                    <input asp-for="ApplicantId" class="form-control" />
+                    <span asp-validation-for="ApplicantId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ApplicantName" class="control-label"></label>
+                    <input asp-for="ApplicantName" class="form-control" />
+                    <span asp-validation-for="ApplicantName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Gender" class="control-label"></label>
+                    @*<input asp-for="Gender" class="form-control" />*@
+                    <select asp-for="Gender" class="form-control">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Religion" class="control-label"></label>
+                    @*<input asp-for="Religion" class="form-control" />*@
+                    <select asp-for="Religion" class="form-control">
+                        <option>Islam</option>
+                        <option>Hindu</option>
+                        <option>Others</option>
+                    </select>
+                    <span asp-validation-for="Religion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BirthRegistrationNo" class="control-label"></label>
+                    <input asp-for="BirthRegistrationNo" class="form-control" />
+                    <span asp-validation-for="BirthRegistrationNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FatherName" class="control-label"></label>
+                    <input asp-for="FatherName" class="form-control" />
+                    <span asp-validation-for="FatherName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MothrsName" class="control-label"></label>
+                    <input asp-for="MothrsName" class="form-control" />
+                    <span asp-validation-for="MothrsName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ContNo" class="control-label"></label>
+                    <input asp-for="ContNo" class="form-control" />
+                    <span asp-validation-for="ContNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ApplicationDate" class="control-label"></label>
+                    <input asp-for="ApplicationDate" class="form-control" />
+                    <span asp-validation-for="ApplicationDate" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsSelect" /> @Html.DisplayNameFor(model => model.IsSelect)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClassId" class="control-label"></label>
+                    <select asp-for="ClassId" class="form-control" asp-items="ViewBag.ClassId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BranchId" class="control-label"></label>
+                    <select asp-for="BranchId" class="form-control" asp-items="ViewBag.BranchId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SchoolId" class="control-label"></label>
+                    <select asp-for="SchoolId" class="form-control" asp-items="ViewBag.SchoolId"></select>
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <img src="~/images/noImage.jpg" width="60" height="60" class="change_edit" />
+                    <input asp-for="ImageUrl" class="form-control changeImage" type="file" required />
+                    <label>Choose File...</label>
+                    @*<img id="itemImage" src="~/Images/Image.gif.jpg" height="80" width="75" />
+        <input id="file" name="file" type="file" onchange="loadImage(event)" />*@
+                    @*<input asp-for="ImageUrl" class="form-control" />*@
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script>
+    $(function () {
+        $('.changeImage').change(function () {
+            var input = this;
+            if (input.files) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.change_edit').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+
+        })
+    })
+</script>

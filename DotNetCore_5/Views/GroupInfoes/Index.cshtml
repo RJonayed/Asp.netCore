@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DotNetCore_5.Models.GroupInfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="font-family:Algerian;text-align:center;color:green;">Group Information</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr class="bg-primary">
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.GroupId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GroupName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.GroupId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GroupId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GroupId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.GroupId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+﻿@model DotNetCore_5.Models.Selection
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4> Edit Selection</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Position" class="control-label"></label>
+                <select asp-for="Position" class="form-control">
+                    <option>First</option>
+                    <option>Second</option>
+                    <option>Third Position</option>
+                </select>
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Applicant</label>
+                @*<input asp-for="SlNO" class="form-control" />*@
+                <select asp-for="SlNO" class="form-control" asp-items="ViewBag.SlNO"></select>
+                <span asp-validation-for="SlNO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

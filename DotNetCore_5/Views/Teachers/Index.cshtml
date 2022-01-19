@@ -1,0 +1,114 @@
+﻿@model IEnumerable<DotNetCore_5.Models.Teacher>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="font-family:Algerian;text-align:center;color:green">Teacher Information</h2>
+
+<p>
+    @*<a asp-action="Create">Create New</a>*@
+    <a class="btn btn-success" data-toggle="modal" data-target="#addEmployeeModal" name="addEmployeeModal"><i class="material-icons">&#xE147;</i><span>Add New</span></a>
+</p>
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr class="bg-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.joinDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>*@
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.TeacherId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.joinDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TeacherId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.TeacherId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TeacherId">Delete</a>
+                    @*<a asp-action="@ViewBag.Delete.ActionName" asp-route-id="@item.TeacherId">Delete</a>}*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="addEmployeeModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-controller="Teachers" asp-action="Create">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="color:wheat;text-align:center">Add Teacher</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Teacher Name</label>
+                        <input type="text" class="form-control" required="required" name="TeacherName" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" required="required" name="Email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Monile No</label>
+                        <input type="text" class="form-control" required="required" name="ContNumber" />
+                    </div>
+                    <div class="form-group">
+                        <label>Join Date</label>
+                        <input type="text" class="form-control datetimepicker" required="required" name="joinDate" />
+                    </div>
+                    <div class="form-group">
+                        <label>Salary</label>
+                        <input type="text" class="form-control" required="required" name="Salary" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />
+                    <input type="Submit" class="btn btn-success" value="Add" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

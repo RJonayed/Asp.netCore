@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DotNetCore_5.Models.Subject>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="font-family:Algerian;text-align:center;color:green">Subject Information</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr class="bg-primary">
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.SubjectId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubjectCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExamMark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GroupsId)
+            </th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.SubjectId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamMark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupsId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SubjectId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SubjectId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SubjectId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
